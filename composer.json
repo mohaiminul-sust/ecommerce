@@ -9,7 +9,9 @@
 		"laravel/framework": "4.2.*",
 		"way/generators": "~2.0",
 		"intervention/image": "^2.3",
-		"laravelbook/ardent" : "2.*"
+		"laravelbook/ardent" : "2.*",
+		"fitztrev/laravel-html-minify": "1.*",
+		"frozennode/administrator": "4.*"
 	},
 
 	"autoload": {
