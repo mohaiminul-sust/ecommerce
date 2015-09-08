@@ -8,7 +8,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"way/generators": "~2.0",
-		"intervention/image": "^2.3"
+		"intervention/image": "^2.3",
+		"fitztrev/laravel-html-minify": "1.*"
 	},
 
 	"autoload": {
