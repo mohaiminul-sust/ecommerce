@@ -11,17 +11,13 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', ['uses'=>'StoresController@index']);
 
 
 Route::resource('admin/categories', 'CategoriesController');
 
 Route::resource('admin/products', 'ProductsController');
 
+Route::resource('stores', 'StoresController');
 
 
-
-//Route::post('admin/products/toggleAvailability', 'ProductsController@toggleAvailability');

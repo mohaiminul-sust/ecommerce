@@ -85,6 +85,8 @@
                     </div><!-- end view-cart -->
                 </section><!-- end action-bar -->
             </header>
+            
+            @yield('promo')
 
             <hr />
 
