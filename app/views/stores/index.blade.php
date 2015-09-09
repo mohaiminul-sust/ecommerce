@@ -28,12 +28,16 @@
 
             <p>{{ $product->description }}</p>
 
-            <h5>Availability: <span class="instock">In Stock</span></h5>
+            <h5>Availability: 
+            	<span class="{{ Availability::displayClass($product->availability) }}">
+            		{{ Availability::display($product->availability) }}
+           		</span>
+            </h5>
 
             <p>
                 <a href="#" class="cart-btn">
-                    <span class="price">$499.08</span>
-                     <img src="img/white-cart.gif" alt="Add to Cart">
+                    <span class="price">${{ $product->price }}</span>
+                     {{ HTML::image('img/white-cart.gif', 'Add to cart') }}
                       ADD TO CART
                 </a>
             </p>
