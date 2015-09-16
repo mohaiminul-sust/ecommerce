@@ -1,9 +1,9 @@
 <?php
 
 class Product extends \Eloquent {
-	protected $fillable = array('category_id', 'title', 'description', 'price', 'availability', 'image');
+	protected $fillable = ['category_id', 'title', 'description', 'price', 'availability', 'image'];
 
-	public static $rules = array(
+	public static $rules = [
 			'category_id' => 'required|integer',
 			'title' => 'required|min:2',
 			'description' => 'required|min:20',
@@ -11,7 +11,7 @@ class Product extends \Eloquent {
 			'availability' => 'integer',
 			'image' => 'required|image|mimes:jpeg,jpg,bmp,png,gif'
 
-	);
+	];
 
 
 	public function category(){
