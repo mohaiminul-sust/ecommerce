@@ -36,10 +36,9 @@
                             <li>
                                 <a href="#">Shop by Category {{ HTML::image('img/down-arrow.gif', 'Shop by Category') }}</a>
                                 <ul>
-                                    <li><a href="#">Laptops</a></li>
-                                    <li><a href="#">Desktop PC</a></li>
-                                    <li><a href="#">Smartphones</a></li>
-                                    <li><a href="#">Tablets</a></li>
+                                    @foreach($catnav as $cat)
+                                        <li>{{ HTML::link('stores/category/'.$cat->id, $cat->name) }}</li>
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>
@@ -96,7 +95,7 @@
                 @endif
                 @yield('content')
             </section><!-- end main-content -->
-
+            @yield('pagination')
             <hr />
 
             <footer>

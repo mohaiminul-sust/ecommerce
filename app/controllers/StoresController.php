@@ -3,9 +3,10 @@
 class StoresController extends \BaseController {
 
 	//csrf
-	// public function __construct(){
-	// 	$this->beforeFilter('csrf', ['on'=>'post']);
-	// }
+	public function __construct(){
+		parent::__construct();
+		// $this->beforeFilter('csrf', ['on'=>'post']);
+	}
 
 
 	/**
@@ -87,6 +88,12 @@ class StoresController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function getCategory($cat_id){
+		return View::make('stores.category')
+		->with('products', Product::where('category_id', $cat_id)->paginate(6))
+		->with('category', Category::find($cat_id));
 	}
 
 }
