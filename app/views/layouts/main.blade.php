@@ -28,7 +28,7 @@
                 </section><!-- end top-area -->
                 <section id="action-bar">
                     <div id="logo">
-                        <a href="#"><span id="logo-accent">e</span>Commerce</a>
+                        <a href="/"><span id="logo-accent">e</span>Commerce</a>
                     </div><!-- end logo -->
 
                     <nav class="dropdown">
@@ -85,6 +85,8 @@
                     </div><!-- end view-cart -->
                 </section><!-- end action-bar -->
             </header>
+
+            @yield('promo')
 
             <hr />
 
