@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('promo')
+
 <section id="promo-alt">
     <div id="promo1">
         <h1>The brand new MacBook Pro</h1>
@@ -19,6 +20,7 @@
         <a href="#">Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}</a>
     </div><!-- end promo3 -->
 </section><!-- promo-alt -->
+
 @stop
 
 
@@ -37,7 +39,9 @@
 </aside><!-- end categories-menu -->
 
 <div id="listings">
+
 @foreach($products as $product)
+
 <div class="product">
     <a href="stores/{{ $product->id }}">
     	{{ HTML::image($product->image, $product->title, ['class'=>'feature', 'width'=>'240', 'height'=>'127']) }}
@@ -62,12 +66,16 @@
     </p>
 </div>
 @endforeach
+
 </div>{{-- end listings --}}
+
 @stop
 
 
 @section('pagination')
+
  <section id="pagination">
  	{{ $products->links() }}
  </section>{{-- end pagination --}}
+
 @stop

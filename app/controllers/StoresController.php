@@ -96,4 +96,12 @@ class StoresController extends \BaseController {
 		->with('category', Category::find($cat_id));
 	}
 
+	public function getSearch(){
+		$keyword = Input::get('keyword');
+
+		return View::make('stores.search')
+		->with('products', Product::where('title', 'LIKE', '%'.$keyword.'%')->get())
+		->with('keyword', $keyword);
+	}	
+
 }

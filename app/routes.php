@@ -17,6 +17,10 @@ Route::resource('admin/categories', 'CategoriesController');
 
 Route::resource('admin/products', 'ProductsController');
 
-Route::resource('stores', 'StoresController');
 
 Route::get('stores/category/{cat_id}', 'StoresController@getCategory');
+
+Route::get('stores/search', 'StoresController@getSearch');
+
+Route::resource('stores', 'StoresController');
+
