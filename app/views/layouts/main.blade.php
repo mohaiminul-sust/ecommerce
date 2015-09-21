@@ -90,12 +90,16 @@
             <hr />
 
             <section id="main-content" class="clearfix">
+                <!-- Flash message showing -->
                 @if (Session::has('message'))
                     <p class="alert">{{ Session::get('message') }}</p>
                 @endif
+
                 @yield('content')
             </section><!-- end main-content -->
+
             @yield('pagination')
+            
             <hr />
 
             <footer>
