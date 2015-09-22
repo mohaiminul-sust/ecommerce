@@ -52,9 +52,4 @@ Route::group(['prefix'=>'stores'], function(){
 	Route::get('/', ['as'=>'stores', 'uses'=>'StoresController@index']);
 });
 
-// Route::get('stores/category/{cat_id}', 'StoresController@getCategory');
-
-// Route::get('stores/search', 'StoresController@getSearch');
-
-// Route::resource('stores', 'StoresController');
 
