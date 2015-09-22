@@ -5,12 +5,8 @@ class ProductsController extends \BaseController {
 		parent::__construct();
 		// $this->beforeFilter('csrf', ['on'=>'post']);
 	}
-	/**
-	 * Display a listing of the resource.
-	 * GET /products
-	 *
-	 * @return Response
-	 */
+	
+
 	public function index()
 	{
 		$categories = [];
@@ -20,23 +16,7 @@ class ProductsController extends \BaseController {
 		return View::make('products.index')->withProducts(Product::all())->withCategories($categories);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /products/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /products
-	 *
-	 * @return Response
-	 */
+	
 	public function store()
 	{
 		$validator = Validator::make(Input::all(), Product::$rules);
@@ -62,37 +42,7 @@ class ProductsController extends \BaseController {
 													->withErrors($validator)->withInput();
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /products/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /products/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /products/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function update($id)
 	{
 		$product = Product::find($id);
@@ -106,13 +56,7 @@ class ProductsController extends \BaseController {
 		return Redirect::to('admin/products')->with('message', 'Invalid Product!!');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /products/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function destroy($id)
 	{
 		$product = Product::find($id);
@@ -125,21 +69,5 @@ class ProductsController extends \BaseController {
 
 		return Redirect::to('admin/products')->with('message', 'Something went wrong!!');
 	}
-
-	//The following piece of code has been transfered to update method
-
-	// public function toggleAvailability(){
-	// 	$product = Product::find(Input::get('id'));
-
-	// 	if($product){
-	// 		$product->availability = Input::get('availability');
-	// 		$product->save();
-	// 		return Redirect::to('admin/products')->with('message', 'Product updated');
-	// 	}
-
-	// 	return Redirect::to('admin/products')->with('message', 'Invalid Product!!');
-	// }
-
-
 
 }

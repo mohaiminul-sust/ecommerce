@@ -11,16 +11,50 @@
 |
 */
 
+// home
 Route::get('/', ['uses'=>'StoresController@index']);
 
-Route::resource('admin/categories', 'CategoriesController');
-
-Route::resource('admin/products', 'ProductsController');
 
 
-Route::get('stores/category/{cat_id}', 'StoresController@getCategory');
 
-Route::get('stores/search', 'StoresController@getSearch');
+//admin routes
 
-Route::resource('stores', 'StoresController');
+Route::group(['prefix'=>'admin'], function(){
+	
+	Route::group(['prefix'=>'categories'], function(){
+
+		Route::get('/', ['as'=>'admin.categories', 'uses'=>'CategoriesController@index']);
+		Route::post('/', ['as'=>'admin.categories.store', 'uses'=>'CategoriesController@store']);
+		Route::delete('/{id}', ['as'=>'admin.categories.destroy', 'uses'=>'CategoriesController@destroy']);
+
+	});
+
+	Route::group(['prefix'=>'products'], function(){
+
+		Route::get('/', ['as'=>'admin.products', 'uses'=>'ProductsController@index']);
+		Route::post('/', ['as'=>'admin.products.store', 'uses'=>'ProductsController@store']);
+		Route::delete('/{id}', ['as'=>'admin.products.destroy', 'uses'=>'ProductsController@destroy']);
+		Route::put('/{id}', ['as'=>'admin.products.update', 'uses'=>'ProductsController@update']);
+
+	});
+
+	
+
+});
+
+
+//Stores Routes
+
+Route::group(['prefix'=>'stores'], function(){
+	Route::get('/search', ['as'=>'stores.search', 'uses'=>'StoresController@getSearch']);
+	Route::get('/category/{cat_id}', ['as'=>'stores.category', 'uses'=>'StoresController@getCategory']);
+	Route::get('/{id}', ['as'=>'stores.show', 'uses'=>'StoresController@show']);
+	Route::get('/', ['as'=>'stores', 'uses'=>'StoresController@index']);
+});
+
+// Route::get('stores/category/{cat_id}', 'StoresController@getCategory');
+
+// Route::get('stores/search', 'StoresController@getSearch');
+
+// Route::resource('stores', 'StoresController');
 
