@@ -14,6 +14,31 @@
 // home
 Route::get('/', ['as'=>'kopaya','uses'=>'StoresController@index']);
 
+
+//Stores Routes
+
+Route::group(['prefix'=>'stores'], function(){
+
+	Route::get('/', ['as'=>'stores', 'uses'=>'StoresController@index']);
+	Route::get('/{id}', ['as'=>'stores.show', 'uses'=>'StoresController@show']);
+	Route::get('/search', ['as'=>'stores.search', 'uses'=>'StoresController@getSearch']);
+	Route::get('/category/{cat_id}', ['as'=>'stores.category', 'uses'=>'StoresController@getCategory']);
+	
+});
+
+//Users Routes
+
+Route::group(['prefix'=>'users'], function(){
+
+	Route::get('/create', ['as'=>'users.createform', 'uses'=>'UsersController@createForm']);
+	Route::post('/create', ['as'=>'users.create', 'uses'=>'UsersController@createAccount']);
+	Route::get('/signin', ['as'=>'users.signinform', 'uses'=>'UsersController@signinForm']);
+	Route::post('/signin', ['as'=>'users.signin', 'uses'=>'UsersController@signinAccount']);
+	Route::get('/signout', ['as'=>'users.signout', 'uses'=>'UsersController@signoutAccount']);
+	
+});
+
+
 //admin routes
 
 Route::group(['prefix'=>'admin'], function(){
@@ -38,13 +63,5 @@ Route::group(['prefix'=>'admin'], function(){
 });
 
 
-//Stores Routes
-
-Route::group(['prefix'=>'stores'], function(){
-	Route::get('/search', ['as'=>'stores.search', 'uses'=>'StoresController@getSearch']);
-	Route::get('/category/{cat_id}', ['as'=>'stores.category', 'uses'=>'StoresController@getCategory']);
-	Route::get('/{id}', ['as'=>'stores.show', 'uses'=>'StoresController@show']);
-	Route::get('/', ['as'=>'stores', 'uses'=>'StoresController@index']);
-});
 
 

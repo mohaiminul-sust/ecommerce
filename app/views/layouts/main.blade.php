@@ -53,30 +53,32 @@
 
                     <div id="user-menu">
                         
+                        @if(Auth::check())    
+                        <nav class="dropdown">
+                            <ul>
+                                <li>
+                                    <a href="#">{{ HTML::image('img/user-icon.gif', Auth::user()->firstname) }} Auth::user()->firstname {{ HTML::image('img/down-arrow.gif', Auth::user()->firstname) }}</a>
+                                    <ul>
+                                        <li><a href="#">Order History</a></li>
+                                        <li><a href="{{ URL::route('users.signout') }}">Sign Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                        @else
                         <nav id="signin" class="dropdown">
                             <ul>
                                 <li>
                                     <a href="#">{{ HTML::image('img/user-icon.gif', 'Sign In') }} Sign In {{ HTML::image('img/down-arrow.gif', 'Sign In') }}</a>
                                     <ul>
-                                        <li><a href="#">Sign In</a></li>
-                                        <li><a href="#">Sign Up</a></li>
+                                        <li><a href="{{ URL::route('users.signinform') }}">Sign In</a></li>
+                                        <li><a href="{{ URL::route('users.createform') }}">Sign Up</a></li>
                                     </ul>
                                 </li>
                             </ul>
-                        </nav>
-
-                        <!--
-                        <nav class="dropdown">
-                            <ul>
-                                <li>
-                                    <a href="#">{{ HTML::image('img/user-icon.gif', 'Andrew Perkins') }} Andrew Perkins {{ HTML::image('img/down-arrow.gif', 'Andrew Perkins') }}</a>
-                                    <ul>
-                                        <li><a href="#">Order History</a></li>
-                                        <li><a href="#">Sign Out</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>-->
+                        </nav>    
+                        @endif
+                         
                     </div><!-- end user-menu -->
 
                     <div id="view-cart">
@@ -94,8 +96,8 @@
 
             <section id="main-content" class="clearfix">
                 <!-- Flash message -->
-                @if (Session::has('message'))
-                    <p class="alert">{{ Session::get('message') }}</p>
+                @if(Session::has('message'))
+                    <p class="alert"> {{ Session::get('message') }} </p>
                 @endif
 
                 @yield('content')
@@ -116,8 +118,8 @@
                     <div id="my-account">
                         <h4>MY ACCOUNT</h4>
                         <ul>
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="#">Sign Up</a></li>
+                            <li><a href="{{ URL::route('users.signinform') }}">Sign In</a></li>
+                            <li><a href="{{ URL::route('users.createform') }}">Sign Up</a></li>
                             <li><a href="#">Order History</a></li>
                             <li><a href="#">Shopping Cart</a></li>
                         </ul>
