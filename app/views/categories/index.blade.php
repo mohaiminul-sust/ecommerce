@@ -13,7 +13,7 @@
 		@foreach($categories as $category)
 			<li>
 				{{ $category->name }} -
-				{{ Form::open(array('route'=>array('admin.categories.destroy', $category->id),'method'=>'delete', 'class'=>'form-inline')) }}
+				{{ Form::open(['route'=>['admin.categories.destroy', $category->id],'method'=>'delete', 'class'=>'form-inline']) }}
 				{{ Form::submit('delete') }}
 				{{ Form::close() }}
 			</li>
@@ -34,12 +34,12 @@
 		</div>{{-- end form errors --}}
 	@endif
 
-	{{ Form::open(array('route'=>'admin.categories.store')) }}
+	{{ Form::open(['route'=>'admin.categories.store']) }}
 	<p>
 		{{ Form::label('name') }}
 		{{ Form::text('name') }}
 	</p>
-	{{ Form::submit('Create Category', array('class'=>'secondary-cart-btn')) }}
+	{{ Form::submit('Create Category', ['class'=>'secondary-cart-btn']) }}
 	{{ Form::close() }}
 </div>{{-- end admin --}}
 

@@ -28,7 +28,7 @@
                 </section><!-- end top-area -->
                 <section id="action-bar">
                     <div id="logo">
-                        <a href="/"><span id="logo-accent">e</span>Commerce</a>
+                        <a href="{{ URL::route('kopaya') }}"><span id="logo-accent">e</span>Commerce</a>
                     </div><!-- end logo -->
 
                     <nav class="dropdown">
@@ -45,7 +45,7 @@
                     </nav>
 
                     <div id="search-form">
-                        {{ Form::open(['url'=>'stores/search', 'method'=>'get']) }}
+                        {{ Form::open(['route'=>'stores.search', 'method'=>'get']) }}
                         {{ Form::text('keyword', null, ['placeholder'=>'Search by Keyword', 'class'=>'search']) }}
                         {{ Form::submit('Search', ['class'=>'search submit']) }}
                         {{ Form::close() }}
@@ -93,7 +93,7 @@
             <hr />
 
             <section id="main-content" class="clearfix">
-                <!-- Flash message showing -->
+                <!-- Flash message -->
                 @if (Session::has('message'))
                     <p class="alert">{{ Session::get('message') }}</p>
                 @endif

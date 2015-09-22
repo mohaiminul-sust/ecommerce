@@ -11,7 +11,7 @@
     </div><!-- end promo1 -->
     <div id="promo2">
         <h2>The iPhone 5 is now<br>available in our store!</h2>
-        <a href="">Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}</a>
+        <a href="#">Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}</a>
         {{ HTML::image('img/iphone.png', 'iPhone') }}
     </div><!-- end promo2 -->
     <div id="promo3">

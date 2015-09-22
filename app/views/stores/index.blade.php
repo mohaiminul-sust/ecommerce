@@ -20,11 +20,11 @@
     <div id="products">
     	@foreach($products as $product)
         <div class="product">
-            <a href="stores/{{ $product->id }}">
+            <a href="{{ URL::route('stores.show', $product->id) }}">
             	{{ HTML::image($product->image, $product->title, ['class'=>'feature', 'width'=>'240', 'height'=>'127']) }}
             </a>
 
-            <h3><a href="stores/{{ $product->id }}">{{ $product->title }}</a></h3>
+            <h3><a href="{{ URL::route('stores.show', $product->id) }}">{{ $product->title }}</a></h3>
 
             <p>{{ $product->description }}</p>
 

@@ -12,10 +12,7 @@
 */
 
 // home
-Route::get('/', ['uses'=>'StoresController@index']);
-
-
-
+Route::get('/', ['as'=>'kopaya','uses'=>'StoresController@index']);
 
 //admin routes
 
@@ -37,8 +34,6 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::put('/{id}', ['as'=>'admin.products.update', 'uses'=>'ProductsController@update']);
 
 	});
-
-	
 
 });
 
