@@ -95,6 +95,7 @@
             <hr />
 
             <section id="main-content" class="clearfix">
+            {{-- flash messages --}}
                 @if(Session::has('message'))
                     <p class="alert"> {{ Session::get('message') }} </p>
                 @endif

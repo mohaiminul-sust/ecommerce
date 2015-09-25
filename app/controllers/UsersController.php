@@ -8,7 +8,7 @@ class UsersController extends BaseController{
 	public function __construct(){
 		parent::__construct();
 
-		// $this->beforeFilter('csrf', ['on'=>'post']);
+		$this->beforeFilter('csrf', ['on'=>'post']);
 	}
 
 	public function createForm(){
@@ -53,12 +53,12 @@ class UsersController extends BaseController{
 
 		if(Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')])){
 
-			return Redirect::to('/')->with('message', 'Thanks for signing in '. Auth::user()->firstname .' :) ');
+			return Redirect::to('/')->withMessage('Thanks for signing in '. Auth::user()->firstname .' :) ');
 			// return 'voodoo magic';
 			
 		}
 
-		return Redirect::to('users/signin')->with('message', 'Username or password is wrong!');
+		return Redirect::to('users/signin')->withMessage('Username or password is wrong!');
 
 	}
 
@@ -66,7 +66,7 @@ class UsersController extends BaseController{
 	public function signoutAccount(){
 
 		Auth::logout();
-		
+
 		return Redirect::to('users/signin')->withMessage('You have been signed out :( Sign in again to continue shopping or checkout.');
 				
 		// return Redirect::to('users/signin')->with('message', 'Auth logout failed!');
