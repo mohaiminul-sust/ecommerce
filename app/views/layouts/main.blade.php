@@ -97,7 +97,7 @@
             <section id="main-content" class="clearfix">
                 <!-- Flash message -->
                 @if(Session::has('message'))
-                    <p class='alert'>{{ Session::get('message') }}</p>
+                    <p class="alert">{{Session::get('message')}}</p>
                 @endif
 
                 @yield('content')
@@ -145,10 +145,10 @@
                 <section class="clearfix">
                     <div id="copyright">
                         <div id="logo">
-                            <a href="#"><span id="logo-accent">e</span>Commerce</a>
+                            <a href="/"><span id="logo-accent">e</span>Commerce</a>
                         </div><!-- end logo -->
                         <p id="store-desc">This is a short description of the store.</p>
-                        <p id="store-copy">&copy; 2013 eCommerce. Theme designed by Adi Purdila.</p>
+                        <p id="store-copy">&copy; 2013 eCommerce.</p>
                     </div><!-- end copyright -->
                     <div id="connect">
                         <h4>CONNECT WITH US</h4>

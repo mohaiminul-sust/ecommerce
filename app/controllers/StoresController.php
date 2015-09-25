@@ -1,6 +1,6 @@
 <?php
 
-class StoresController extends \BaseController {
+class StoresController extends BaseController {
 
 	//csrf
 	public function __construct(){

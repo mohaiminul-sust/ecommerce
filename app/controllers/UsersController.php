@@ -65,7 +65,7 @@ class UsersController extends BaseController{
 
 		if(Auth::logout()){
 
-			return Redirect::to('users/signin')->with('message', 'You\'ve been logged out!');
+			return Redirect::to('users/signin')->with('message', 'You have been logged out!');
 		}
 
 		return Redirect::to('users/signin')->with('message', 'Auth logout failed!');

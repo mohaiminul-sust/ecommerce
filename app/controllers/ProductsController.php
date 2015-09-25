@@ -1,6 +1,6 @@
 <?php
 
-class ProductsController extends \BaseController {
+class ProductsController extends BaseController {
 	public function __construct(){
 		parent::__construct();
 		// $this->beforeFilter('csrf', ['on'=>'post']);

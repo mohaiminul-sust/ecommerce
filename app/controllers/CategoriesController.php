@@ -1,6 +1,6 @@
 <?php
 
-class CategoriesController extends \BaseController {
+class CategoriesController extends BaseController {
 
 
 
