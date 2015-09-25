@@ -57,7 +57,7 @@
                             <nav class="dropdown">
                                 <ul>
                                     <li>
-                                        <a href="#">{{ HTML::image('img/user-icon.gif', Auth::user()->firstname) }} Auth::user()->firstname {{ HTML::image('img/down-arrow.gif', Auth::user()->firstname) }}</a>
+                                        <a href="#">{{ HTML::image('img/user-icon.gif', Auth::user()->firstname) }} {{ Auth::user()->firstname }} {{ HTML::image('img/down-arrow.gif', Auth::user()->firstname) }}</a>
                                         <ul>
                                             <li><a href="#">Order History</a></li>
                                             <li><a href="{{ URL::route('users.signout') }}">Sign Out</a></li>

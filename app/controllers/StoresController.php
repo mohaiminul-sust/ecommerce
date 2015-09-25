@@ -5,7 +5,7 @@ class StoresController extends BaseController {
 	//csrf
 	public function __construct(){
 		parent::__construct();
-		// $this->beforeFilter('csrf', ['on'=>'post']);
+		$this->beforeFilter('csrf', ['on'=>'post']);
 	}
 
 

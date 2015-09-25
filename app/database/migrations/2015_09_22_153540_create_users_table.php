@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration {
 			$table->string('telephone');
 			$table->boolean('admin')->default(0);
 			$table->timestamps();
+			$table->string('remember_token')->default(NULL);
+			
 		});
 	}
 

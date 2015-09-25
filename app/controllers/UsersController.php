@@ -53,24 +53,23 @@ class UsersController extends BaseController{
 
 		if(Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')])){
 
-			return Redirect::to('/')->withMessage('Thanks for signing in');
+			return Redirect::to('/')->with('message', 'Thanks for signing in '. Auth::user()->firstname .' :) ');
 			// return 'voodoo magic';
 			
 		}
 
-		return Redirect::to('users/signin')->with('message', 'Auth attempt failed!');
+		return Redirect::to('users/signin')->with('message', 'Username or password is wrong!');
 
 	}
 
 	
 	public function signoutAccount(){
 
-		if(Auth::logout()){
-
-			return Redirect::to('users/signin')->with('message', 'You have been logged out!');
-		}
-
-		return Redirect::to('users/signin')->with('message', 'Auth logout failed!');
+		Auth::logout();
+		
+		return Redirect::to('users/signin')->withMessage('You have been signed out :( Sign in again to continue shopping or checkout.');
+				
+		// return Redirect::to('users/signin')->with('message', 'Auth logout failed!');
 
 	}	
 

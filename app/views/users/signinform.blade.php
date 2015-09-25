@@ -24,7 +24,7 @@
         <h2>I'm a new customer</h2>
         <h3>You can create an account in just a few simple steps.<br>
             Click below to begin.</h3>
-
+            
         <a href="{{ URL::route('users.createform') }}" class="default-btn">CREATE NEW ACCOUNT</a>
     </section><!--- end signup -->
 	
