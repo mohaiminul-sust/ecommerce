@@ -2,17 +2,18 @@
 
 class CategoriesController extends BaseController {
 
-
-
-
 	public function __construct(){
 		parent::__construct();
 		$this->beforeFilter('csrf', ['on'=>'post']);
+		$this->beforeFilter('admin');
+			
 	}
 	
 	public function index()
 	{
-		return View::make('categories.index')->withCategories(Category::all());
+		return View::make('categories.index')
+			// ->withMessage('Welcome to categories admin panel '.Auth::user()->firstname.' .')
+			->withCategories(Category::all());
 	}
 
 	public function store()
@@ -24,11 +25,12 @@ class CategoriesController extends BaseController {
 			$category->name= Input::get('name');
 			$category->save();
 
-			return Redirect::to('admin/categories')->with('message', 'Category Created!');
+			return Redirect::to('admin/categories')->withMessage('Category Created!');
 		}
 
-		return Redirect::to('admin/categories')->with('message', 'Something went wrong!!!')
-													->withErrors($validator)->withInput();
+		return Redirect::to('admin/categories')
+			->withMessage('Something went wrong!!!')
+			->withErrors($validator)->withInput();
 	}
 
 	
@@ -38,10 +40,10 @@ class CategoriesController extends BaseController {
 
 		if($category){
 			$category->delete();
-			return Redirect::to('admin/categories')->with('message', 'Category Deleted!');
+			return Redirect::to('admin/categories')->withMessage('Category Deleted!');
 		}
 
-		return Redirect::to('admin/categories')->with('message', 'Something went wrong!!');
+		return Redirect::to('admin/categories')->withMessage('Category can\'t be deleted!!');
 	}
 
 }

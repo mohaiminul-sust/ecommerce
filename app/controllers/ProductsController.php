@@ -4,16 +4,22 @@ class ProductsController extends BaseController {
 	public function __construct(){
 		parent::__construct();
 		$this->beforeFilter('csrf', ['on'=>'post']);
+		$this->beforeFilter('admin');
 	}
 	
 
 	public function index()
 	{
 		$categories = [];
+
 		foreach (Category::all() as $category) {
 			$categories[$category->id] = $category->name;
 		}
-		return View::make('products.index')->withProducts(Product::all())->withCategories($categories);
+
+		return View::make('products.index')
+			// ->withMessage('Welcome to products admin panel '.Auth::user()->firstname.' .')
+			->withProducts(Product::all())
+			->withCategories($categories);
 	}
 
 	
@@ -35,11 +41,12 @@ class ProductsController extends BaseController {
 			$product->image = 'img/products/'.$filename;
 			$product->save();
 
-			return Redirect::to('admin/products')->with('message', 'Product Created!');
+			return Redirect::to('admin/products')->withMessage('Product Created!');
 		}
 		
-		return Redirect::to('admin/products')->with('message', 'Something went wrong!!!')
-													->withErrors($validator)->withInput();
+		return Redirect::to('admin/products')
+			->withMessage('Something went wrong!!!')
+			->withErrors($validator)->withInput();
 	}
 
 	
@@ -50,10 +57,10 @@ class ProductsController extends BaseController {
 		if($product){
 			$product->availability = Input::get('availability');
 			$product->save();
-			return Redirect::to('admin/products')->with('message', 'Product updated');
+			return Redirect::to('admin/products')->withMessage('Product updated');
 		}
 
-		return Redirect::to('admin/products')->with('message', 'Invalid Product!!');
+		return Redirect::to('admin/products')->withMessage('Product update failed !!');
 	}
 
 	
@@ -64,10 +71,10 @@ class ProductsController extends BaseController {
 		if($product){
 			File::delete('public/'.$product->image);
 			$product->delete();
-			return Redirect::to('admin/products')->with('message', 'Product Deleted!');
+			return Redirect::to('admin/products')->withMessage('Product Deleted !');
 		}
 
-		return Redirect::to('admin/products')->with('message', 'Something went wrong!!');
+		return Redirect::to('admin/products')->withMessage('Product deletion failed !!');
 	}
 
 }

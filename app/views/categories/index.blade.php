@@ -5,7 +5,7 @@
 <div id="admin">
 	<h1>Categories Admin Panel</h1><hr>
 
-	<p>Here you can view, delete, and create new categories.</p>
+	<p>Hi, {{ Auth::user()->firstname }} !</br> Here you can view, delete, and create new categories.</p>
 
 	<h2>Categories</h2><hr>
 

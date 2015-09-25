@@ -59,6 +59,10 @@
                                     <li>
                                         <a href="#">{{ HTML::image('img/user-icon.gif', Auth::user()->firstname) }} {{ Auth::user()->firstname }} {{ HTML::image('img/down-arrow.gif', Auth::user()->firstname) }}</a>
                                         <ul>
+                                            @if(Auth::user()->admin == 1)
+                                                <li><a href="{{ URL::route('admin.categories') }}">Manage Categories</a></li>
+                                                <li><a href="{{ URL::route('admin.products') }}">Manage Products</a></li>
+                                            @endif
                                             <li><a href="#">Order History</a></li>
                                             <li><a href="{{ URL::route('users.signout') }}">Sign Out</a></li>
                                         </ul>
@@ -120,6 +124,12 @@
                         <ul>
                             <li><a href="{{ URL::route('users.signinform') }}">Sign In</a></li>
                             <li><a href="{{ URL::route('users.createform') }}">Sign Up</a></li>
+                            @if(Auth::check())
+                                @if(Auth::user()->admin == 1)
+                                    <li><a href="{{ URL::route('admin.categories') }}">Manage Categories</a></li>
+                                    <li><a href="{{ URL::route('admin.products') }}">Manage Products</a></li>
+                                @endif
+                            @endif
                             <li><a href="#">Order History</a></li>
                             <li><a href="#">Shopping Cart</a></li>
                         </ul>

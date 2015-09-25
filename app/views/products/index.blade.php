@@ -5,7 +5,7 @@
 <div id="admin">
 	<h1>Products Admin Panel</h1><hr>
 
-	<p>Here you can view, delete, and create new products.</p>
+	<p>Hi, {{ Auth::user()->firstname }} !</br> Here you can view, delete, and create new products.</p>
 
 	<h2>Products</h2><hr>
 

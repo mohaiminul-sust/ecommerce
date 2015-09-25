@@ -70,6 +70,18 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+
+// Admin filter
+
+Route::filter('admin', function()
+{
+	if (!Auth::check() || Auth::user()->admin != 1){
+		
+		return Redirect::to('/')->withMessage('Unauthorized access prohibited ! Login with an account that has admin privilages.');
+
+	}
+});
+
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter
