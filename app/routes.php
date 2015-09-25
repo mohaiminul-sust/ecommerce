@@ -12,7 +12,7 @@
 */
 
 // home
-Route::get('/', ['as'=>'kopaya','uses'=>'StoresController@index']);
+Route::get('/', ['as'=>'homeroute','uses'=>'StoresController@index']);
 
 
 //Stores Routes

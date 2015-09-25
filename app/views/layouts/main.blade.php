@@ -28,7 +28,7 @@
                 </section><!-- end top-area -->
                 <section id="action-bar">
                     <div id="logo">
-                        <a href="{{ URL::route('kopaya') }}"><span id="logo-accent">e</span>Commerce</a>
+                        <a href="{{ URL::route('homeroute') }}"><span id="logo-accent">e</span>Commerce</a>
                     </div><!-- end logo -->
 
                     <nav class="dropdown">

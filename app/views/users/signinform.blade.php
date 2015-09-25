@@ -9,11 +9,11 @@
         {{ Form::open(['route' => 'users.signin', 'method' => 'post']) }}
             <p>
                 {{ HTML::image('img/email.gif', 'E-mail Address') }}
-                {{ Form::text('email') }}
+                {{ Form::text('email', null, ['placeholder' => 'Enter user e-mail address']) }}
             </p>
             <p>
                 {{ HTML::image('img/password.gif', 'Password') }}
-                {{ Form::password('password') }}
+                {{ Form::password('password', ['placeholder' => '**********']) }}
             </p>
 			{{ Form::submit('Sign In', ['class' => 'secondary-cart-btn']) }}
         

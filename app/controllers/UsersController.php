@@ -53,7 +53,9 @@ class UsersController extends BaseController{
 
 		if(Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')])){
 
-			return Redirect::to('/')->with('message', 'Thanks for signing in');
+			return Redirect::to('/')->withMessage('Thanks for signing in');
+			// return 'voodoo magic';
+			
 		}
 
 		return Redirect::to('users/signin')->with('message', 'Auth attempt failed!');
