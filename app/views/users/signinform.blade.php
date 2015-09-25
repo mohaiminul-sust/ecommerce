@@ -15,8 +15,9 @@
                 {{ HTML::image('img/password.gif', 'Password') }}
                 {{ Form::password('password', ['placeholder' => '**********']) }}
             </p>
-			{{ Form::submit('Sign In', ['class' => 'secondary-cart-btn']) }}
-        
+			{{-- Used 'Form::button' instead of 'Form::submit' to fulfill styling requirements  --}}
+        	{{-- {{ Form::submit('SIGN IN', ['class' => 'secondary-cart-btn']) }} --}}
+        	{{ Form::button('SIGN IN', ['type' => 'submit' ,'class' => 'secondary-cart-btn']) }}
         {{ Form::close() }}
 
     </section><!-- end signin-form -->
