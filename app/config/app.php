@@ -124,7 +124,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
-		// 'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
 	),
 
 	/*

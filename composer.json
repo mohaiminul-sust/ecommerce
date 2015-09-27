@@ -9,7 +9,10 @@
 		"laravel/framework": "4.2.*",
 		"way/generators": "~2.0",
 		"intervention/image": "^2.3",
-		"fitztrev/laravel-html-minify": "1.*"
+		"moltin/currency": "dev-master",
+		"moltin/tax": "dev-master",
+		"moltin/cart": "dev-master",
+		"moltin/laravel-cart": "v4.2"
 	},
 
 	"autoload": {
@@ -39,4 +42,5 @@
 		"preferred-install": "dist"
 	},
 	"minimum-stability": "stable"
+
 }
