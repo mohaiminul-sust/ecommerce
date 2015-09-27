@@ -124,6 +124,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'Moltin\Cart\CartServiceProvider'
 	),
 
 	/*
@@ -191,7 +192,7 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Image'             => 'Intervention\Image\Facades\Image',
-
+		'Cart'              => 'Moltin\Cart\Facade'
 	),
 
 );

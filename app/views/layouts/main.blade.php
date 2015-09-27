@@ -63,7 +63,6 @@
                                                 <li><a href="{{ URL::route('admin.categories') }}">Manage Categories</a></li>
                                                 <li><a href="{{ URL::route('admin.products') }}">Manage Products</a></li>
                                             @endif
-                                            <li><a href="#">Order History</a></li>
                                             <li><a href="{{ URL::route('users.signout') }}">Sign Out</a></li>
                                         </ul>
                                     </li>
@@ -86,7 +85,7 @@
                     </div><!-- end user-menu -->
 
                     <div id="view-cart">
-                        <a href="#">{{ HTML::image('img/blue-cart.gif', 'View Cart') }} View Cart</a>
+                        <a href="{{ URL::route('stores.cart') }}">{{ HTML::image('img/blue-cart.gif', 'View Cart') }} View Cart</a>
                     </div><!-- end view-cart -->
                 </section><!-- end action-bar -->
             </header>
@@ -130,8 +129,7 @@
                                     <li><a href="{{ URL::route('admin.products') }}">Manage Products</a></li>
                                 @endif
                             @endif
-                            <li><a href="#">Order History</a></li>
-                            <li><a href="#">Shopping Cart</a></li>
+                            <li><a href="{{ URL::route('stores.cart') }}">Shopping Cart</a></li>
                         </ul>
                     </div><!-- end my-account -->
                     <div id="info">
@@ -145,7 +143,7 @@
                         <h4>EXTRAS</h4>
                         <ul>
                             <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="{{ URL::route('stores.contact') }}">Contact Us</a></li>
                         </ul>
                     </div><!-- end extras -->
                 </section><!-- end links -->

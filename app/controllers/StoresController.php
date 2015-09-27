@@ -6,6 +6,7 @@ class StoresController extends BaseController {
 	public function __construct(){
 		parent::__construct();
 		$this->beforeFilter('csrf', ['on'=>'post']);
+		$this->beforeFilter('auth', ['only'=>['addToCart', 'getCart', 'removeCartItem']]);
 	}
 
 
@@ -33,4 +34,43 @@ class StoresController extends BaseController {
 		->with('keyword', $keyword);
 	}	
 
+	public function getContact(){
+		
+		return View::make('stores.contact');
+	}
+	
+	//cart functions below
+
+	public function addToCart(){
+
+		$product = Product::find(Input::get('id'));
+		$quantity = Input::get('quantity');
+
+
+		Cart::insert([
+			'id' => $product->id,
+			'name' => $product->title,
+			'price' => $product->price,
+			'quantity' => $quantity,
+			'image' => $product->image
+		]);
+
+		return Redirect::to('stores/cart')->withMessage('Inserted product into cart : '.$product->title.' Quantity: '.$quantity);
+	}
+
+	public function getCart(){
+		
+		return View::make('stores.cart')->withProducts(Cart::contents());
+	}
+
+	public function removeCartItem($identifier){
+		
+		$item = Cart::item($identifier);
+		$item->remove();
+		
+		return Redirect::to('stores/cart')->withMessage('Removed product from cart : '.$item->name);
+
+	}
+
+	
 }
