@@ -1,1 +1,0 @@
-D:\Laravel projects\ecomm\app/views/categories/show.blade.php

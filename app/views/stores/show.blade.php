@@ -10,7 +10,7 @@
 
 	    <hr />
 
-	    <form action="#" method="post">
+	    {{-- <form action="#" method="post">
 	        <label for="qty">Qty:</label>
 	        <input type="text" id="qty" name="qty" value="1" maxlength="2">
 
@@ -18,7 +18,18 @@
 	            {{ HTML::image('img/white-cart.gif', 'Add to Cart') }}
 	             ADD TO CART
 	        </button>
-	    </form>
+	    </form> --}}
+	    {{ Form::open(['route'=>'stores.addtocart', 'method'=>'post']) }}
+		{{ Form::label('quantity', 'Quantity') }}
+		{{ Form::text('quantity', 1, ['maxlength'=>2]) }}
+	    {{ Form::hidden('id', $product->id) }}
+
+		<button type="submit" class="secondary-cart-btn">
+            {{ HTML::image('img/white-cart.gif', 'Add to Cart') }}
+             ADD TO CART
+        </button>
+        {{ Form::close() }}
+
 	</div><!-- end product-details -->
 	<div id="product-info">
 	    <p class="price">${{ $product->price }}</p>

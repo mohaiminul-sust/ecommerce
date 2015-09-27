@@ -28,7 +28,7 @@
                 </section><!-- end top-area -->
                 <section id="action-bar">
                     <div id="logo">
-                        <a href="/"><span id="logo-accent">e</span>Commerce</a>
+                        <a href="{{ URL::route('homeroute') }}"><span id="logo-accent">e</span>Commerce</a>
                     </div><!-- end logo -->
 
                     <nav class="dropdown">
@@ -36,67 +36,78 @@
                             <li>
                                 <a href="#">Shop by Category {{ HTML::image('img/down-arrow.gif', 'Shop by Category') }}</a>
                                 <ul>
-                                    <li><a href="#">Laptops</a></li>
-                                    <li><a href="#">Desktop PC</a></li>
-                                    <li><a href="#">Smartphones</a></li>
-                                    <li><a href="#">Tablets</a></li>
+                                    @foreach($catnav as $cat)
+                                        <li>{{ HTML::link('stores/category/'.$cat->id, $cat->name) }}</li>
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>
                     </nav>
 
                     <div id="search-form">
-                        <form action="#" method="get">
-                            <input type="search" name="search" placeholder="Search by keyword" class="search">
-                            <input type="submit" value="Search" class="search submit">
-                        </form>
+                        {{ Form::open(['route'=>'stores.search', 'method'=>'get']) }}
+                        {{ Form::text('keyword', null, ['placeholder'=>'Search by Keyword', 'class'=>'search']) }}
+                        {{ Form::submit('Search', ['class'=>'search submit']) }}
+                        {{ Form::close() }}
                     </div><!-- end search-form -->
 
                     <div id="user-menu">
                         
-                        <nav id="signin" class="dropdown">
-                            <ul>
-                                <li>
-                                    <a href="#">{{ HTML::image('img/user-icon.gif', 'Sign In') }} Sign In {{ HTML::image('img/down-arrow.gif', 'Sign In') }}</a>
-                                    <ul>
-                                        <li><a href="#">Sign In</a></li>
-                                        <li><a href="#">Sign Up</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <!--
-                        <nav class="dropdown">
-                            <ul>
-                                <li>
-                                    <a href="#">{{ HTML::image('img/user-icon.gif', 'Andrew Parkins') }} Andrew Perkins {{ HTML::image('img/down-arrow.gif', 'Andrew Parkins') }}</a>
-                                    <ul>
-                                        <li><a href="#">Order History</a></li>
-                                        <li><a href="#">Sign Out</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>-->
+                        @if(Auth::check())    
+                            <nav class="dropdown">
+                                <ul>
+                                    <li>
+                                        <a href="#">{{ HTML::image('img/user-icon.gif', Auth::user()->firstname) }} {{ Auth::user()->firstname }} {{ HTML::image('img/down-arrow.gif', Auth::user()->firstname) }}</a>
+                                        <ul>
+                                            @if(Auth::user()->admin == 1)
+                                                <li><a href="{{ URL::route('admin.categories') }}">Manage Categories</a></li>
+                                                <li><a href="{{ URL::route('admin.products') }}">Manage Products</a></li>
+                                            @endif
+                                            <li><a href="{{ URL::route('users.signout') }}">Sign Out</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        @else
+                            <nav id="signin" class="dropdown">
+                                <ul>
+                                    <li>
+                                        <a href="#">{{ HTML::image('img/user-icon.gif', 'Sign In') }} Sign In {{ HTML::image('img/down-arrow.gif', 'Sign In') }}</a>
+                                        <ul>
+                                            <li><a href="{{ URL::route('users.signinform') }}">Sign In</a></li>
+                                            <li><a href="{{ URL::route('users.createform') }}">Sign Up</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>    
+                        @endif
+                         
                     </div><!-- end user-menu -->
 
                     <div id="view-cart">
-                        <a href="#">{{ HTML::image('img/blue-cart.gif', 'View Cart') }} View Cart</a>
+                        <a href="{{ URL::route('stores.cart') }}">{{ HTML::image('img/blue-cart.gif', 'View Cart') }} View Cart</a>
                     </div><!-- end view-cart -->
                 </section><!-- end action-bar -->
             </header>
-            
+
             @yield('promo')
+
+            @yield('search-keyword')
+
 
             <hr />
 
             <section id="main-content" class="clearfix">
-               @if(Session::has('message'))
-                    <p class='alert'>{{ Session::get('message') }}</p>
-               @endif
-               @yield('content')
+            {{-- flash messages --}}
+                @if(Session::has('message'))
+                    <p class="alert"> {{ Session::get('message') }} </p>
+                @endif
+
+                @yield('content')
             </section><!-- end main-content -->
 
+            @yield('pagination')
+            
             <hr />
 
             <footer>
@@ -110,10 +121,15 @@
                     <div id="my-account">
                         <h4>MY ACCOUNT</h4>
                         <ul>
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="#">Sign Up</a></li>
-                            <li><a href="#">Order History</a></li>
-                            <li><a href="#">Shopping Cart</a></li>
+                            <li><a href="{{ URL::route('users.signinform') }}">Sign In</a></li>
+                            <li><a href="{{ URL::route('users.createform') }}">Sign Up</a></li>
+                            @if(Auth::check())
+                                @if(Auth::user()->admin == 1)
+                                    <li><a href="{{ URL::route('admin.categories') }}">Manage Categories</a></li>
+                                    <li><a href="{{ URL::route('admin.products') }}">Manage Products</a></li>
+                                @endif
+                            @endif
+                            <li><a href="{{ URL::route('stores.cart') }}">Shopping Cart</a></li>
                         </ul>
                     </div><!-- end my-account -->
                     <div id="info">
@@ -127,7 +143,7 @@
                         <h4>EXTRAS</h4>
                         <ul>
                             <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="{{ URL::route('stores.contact') }}">Contact Us</a></li>
                         </ul>
                     </div><!-- end extras -->
                 </section><!-- end links -->
@@ -137,10 +153,10 @@
                 <section class="clearfix">
                     <div id="copyright">
                         <div id="logo">
-                            <a href="#"><span id="logo-accent">e</span>Commerce</a>
+                            <a href="/"><span id="logo-accent">e</span>Commerce</a>
                         </div><!-- end logo -->
                         <p id="store-desc">This is a short description of the store.</p>
-                        <p id="store-copy">&copy; 2013 eCommerce. Theme designed by Adi Purdila.</p>
+                        <p id="store-copy">&copy; 2013 eCommerce.</p>
                     </div><!-- end copyright -->
                     <div id="connect">
                         <h4>CONNECT WITH US</h4>
@@ -151,7 +167,7 @@
                     </div><!-- end connect -->
                     <div id="payments">
                         <h4>SUPPORTED PAYMENT METHODS</h4>
-                        {{ HTML::image('img/payment-methods.gif', 'Supported payment methods') }}
+                        {{ HTML::image('img/payment-methods.gif', 'SUPPORTED PAYMENT METHODS') }}
                     </div><!-- end payments -->
                 </section>
             </footer>

@@ -1,92 +1,76 @@
 <?php
 
-class StoresController extends \BaseController {
+class StoresController extends BaseController {
 
 	//csrf
 	public function __construct(){
+		parent::__construct();
 		$this->beforeFilter('csrf', ['on'=>'post']);
+		$this->beforeFilter('auth', ['only'=>['addToCart', 'getCart', 'removeCartItem']]);
 	}
 
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /stores
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
 		return View::make('stores.index')->withProducts(Product::take(4)->orderBy('created_at', 'DESC')->get());
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /stores/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /stores
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 * GET /stores/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
 		return View::make('stores.show')->withProduct(Product::find($id));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /stores/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
+	public function getCategory($cat_id){
+		return View::make('stores.category')
+		->with('products', Product::where('category_id', $cat_id)->paginate(6))
+		->with('category', Category::find($cat_id));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /stores/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+	public function getSearch(){
+		$keyword = Input::get('keyword');
+
+		return View::make('stores.search')
+		->with('products', Product::where('title', 'LIKE', '%'.$keyword.'%')->get())
+		->with('keyword', $keyword);
+	}	
+
+	public function getContact(){
+		
+		return View::make('stores.contact');
+	}
+	
+	//cart functions below
+
+	public function addToCart(){
+
+		$product = Product::find(Input::get('id'));
+		$quantity = Input::get('quantity');
+
+
+		Cart::insert([
+			'id' => $product->id,
+			'name' => $product->title,
+			'price' => $product->price,
+			'quantity' => $quantity,
+			'image' => $product->image
+		]);
+
+		return Redirect::to('stores/cart')->withMessage('Inserted product into cart : '.$product->title.' Quantity: '.$quantity);
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /stores/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+	public function getCart(){
+		
+		return View::make('stores.cart')->withProducts(Cart::contents());
 	}
 
+	public function removeCartItem($identifier){
+		
+		$item = Cart::item($identifier);
+		$item->remove();
+		
+		return Redirect::to('stores/cart')->withMessage('Removed product from cart : '.$item->name);
+
+	}
+
+	
 }

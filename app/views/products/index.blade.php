@@ -5,7 +5,7 @@
 <div id="admin">
 	<h1>Products Admin Panel</h1><hr>
 
-	<p>Here you can view, delete, and create new products.</p>
+	<p>Hi, {{ Auth::user()->firstname }} !</br> Here you can view, delete, and create new products.</p>
 
 	<h2>Products</h2><hr>
 
@@ -14,11 +14,11 @@
 			<li>
 				{{ HTML::image($product->image, $product->title, ['width'=>'50']) }} 
 				{{ $product->title }} -
-				{{ Form::open(array('url'=>array('admin/products', $product->id),'method'=>'delete', 'class'=>'form-inline')) }}
+				{{ Form::open(['route'=>['admin.products.destroy', $product->id], 'method'=>'delete', 'class'=>'form-inline']) }}
 				{{ Form::submit('delete') }}
 				{{ Form::close() }} - 
 
-				{{ Form::open(array('url'=>array('admin/products', $product->id),'method'=>'put', 'class'=>'form-inline')) }}
+				{{ Form::open(['route'=>['admin.products.update', $product->id],'method'=>'put', 'class'=>'form-inline']) }}
 				{{ Form::select('availability', ['1'=>'In Stock', '0'=>'Out of Stock'], $product->availability)}}
 				{{ Form::submit('Update') }}
 				{{ Form::close() }}
@@ -40,7 +40,7 @@
 		</div>{{-- end form errors --}}
 	@endif
 
-	{{ Form::open(array('url'=>'admin/products','method'=> 'post', 'files'=>true)) }}
+	{{ Form::open(['route'=>'admin.products.store','method'=> 'post', 'files'=>true]) }}
 	<p>
 		{{ Form::label('category_id', 'Category') }}
 		{{ Form::select('category_id', $categories) }}
@@ -62,7 +62,7 @@
 		{{ Form::file('image') }}
 	</p>
 
-	{{ Form::submit('Create Product', array('class'=>'secondary-cart-btn')) }}
+	{{ Form::submit('Create Product', ['class'=>'secondary-cart-btn']) }}
 	{{ Form::close() }}
 </div>{{-- end admin --}}
 

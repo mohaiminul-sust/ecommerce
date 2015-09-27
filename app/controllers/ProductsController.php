@@ -1,41 +1,28 @@
 <?php
 
-class ProductsController extends \BaseController {
+class ProductsController extends BaseController {
 	public function __construct(){
+		parent::__construct();
 		$this->beforeFilter('csrf', ['on'=>'post']);
+		$this->beforeFilter('admin');
 	}
-	/**
-	 * Display a listing of the resource.
-	 * GET /products
-	 *
-	 * @return Response
-	 */
+	
+
 	public function index()
 	{
 		$categories = [];
+
 		foreach (Category::all() as $category) {
 			$categories[$category->id] = $category->name;
 		}
-		return View::make('products.index')->withProducts(Product::all())->withCategories($categories);
+
+		return View::make('products.index')
+			// ->withMessage('Welcome to products admin panel '.Auth::user()->firstname.' .')
+			->withProducts(Product::all())
+			->withCategories($categories);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /products/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /products
-	 *
-	 * @return Response
-	 */
+	
 	public function store()
 	{
 		$validator = Validator::make(Input::all(), Product::$rules);
@@ -54,44 +41,15 @@ class ProductsController extends \BaseController {
 			$product->image = 'img/products/'.$filename;
 			$product->save();
 
-			return Redirect::to('admin/products')->with('message', 'Product Created!');
+			return Redirect::to('admin/products')->withMessage('Product Created!');
 		}
 		
-		return Redirect::to('admin/products')->with('message', 'Something went wrong!!!')
-													->withErrors($validator)->withInput();
+		return Redirect::to('admin/products')
+			->withMessage('Something went wrong!!!')
+			->withErrors($validator)->withInput();
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /products/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /products/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /products/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function update($id)
 	{
 		$product = Product::find($id);
@@ -99,19 +57,13 @@ class ProductsController extends \BaseController {
 		if($product){
 			$product->availability = Input::get('availability');
 			$product->save();
-			return Redirect::to('admin/products')->with('message', 'Product updated');
+			return Redirect::to('admin/products')->withMessage('Product updated');
 		}
 
-		return Redirect::to('admin/products')->with('message', 'Invalid Product!!');
+		return Redirect::to('admin/products')->withMessage('Product update failed !!');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /products/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function destroy($id)
 	{
 		$product = Product::find($id);
@@ -119,26 +71,10 @@ class ProductsController extends \BaseController {
 		if($product){
 			File::delete('public/'.$product->image);
 			$product->delete();
-			return Redirect::to('admin/products')->with('message', 'Product Deleted!');
+			return Redirect::to('admin/products')->withMessage('Product Deleted !');
 		}
 
-		return Redirect::to('admin/products')->with('message', 'Something went wrong!!');
+		return Redirect::to('admin/products')->withMessage('Product deletion failed !!');
 	}
-
-	//The following piece of code has been transfered to update method
-
-	// public function toggleAvailability(){
-	// 	$product = Product::find(Input::get('id'));
-
-	// 	if($product){
-	// 		$product->availability = Input::get('availability');
-	// 		$product->save();
-	// 		return Redirect::to('admin/products')->with('message', 'Product updated');
-	// 	}
-
-	// 	return Redirect::to('admin/products')->with('message', 'Invalid Product!!');
-	// }
-
-
 
 }

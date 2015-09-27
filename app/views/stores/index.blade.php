@@ -20,11 +20,11 @@
     <div id="products">
     	@foreach($products as $product)
         <div class="product">
-            <a href="stores/{{ $product->id }}">
+            <a href="{{ URL::route('stores.show', $product->id) }}">
             	{{ HTML::image($product->image, $product->title, ['class'=>'feature', 'width'=>'240', 'height'=>'127']) }}
             </a>
 
-            <h3><a href="stores/{{ $product->id }}">{{ $product->title }}</a></h3>
+            <h3><a href="{{ URL::route('stores.show', $product->id) }}">{{ $product->title }}</a></h3>
 
             <p>{{ $product->description }}</p>
 
@@ -35,11 +35,20 @@
             </h5>
 
             <p>
-                <a href="#" class="cart-btn">
+                {{-- <a href="#" class="cart-btn">
                     <span class="price">${{ $product->price }}</span>
                      {{ HTML::image('img/white-cart.gif', 'Add to cart') }}
                       ADD TO CART
-                </a>
+                </a> --}}
+                {{ Form::open(['route'=>'stores.addtocart', 'method'=>'post']) }}
+                {{ Form::hidden('quantity', 1) }}
+                {{ Form::hidden('id', $product->id) }}
+                <button type="submit" class="cart-btn">
+                    <span class="price">{{ $product->price }}</span>
+                    {{ HTML::image('img/white-cart.gif', 'Add to cart') }}
+                    ADD TO CART
+                </button>
+                {{ Form::close() }}
             </p>
         </div>
         @endforeach

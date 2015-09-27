@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('users/signin');
 		}
 	}
 });
@@ -68,6 +68,18 @@ Route::filter('auth.basic', function()
 Route::filter('guest', function()
 {
 	if (Auth::check()) return Redirect::to('/');
+});
+
+
+// Admin filter
+
+Route::filter('admin', function()
+{
+	if (!Auth::check() || Auth::user()->admin != 1){
+		
+		return Redirect::to('/')->withMessage('Unauthorized access prohibited !!! Login with an account that has admin privilages.');
+
+	}
 });
 
 /*
