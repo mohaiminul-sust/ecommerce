@@ -22,16 +22,16 @@ class StoresController extends BaseController {
 
 	public function getCategory($cat_id){
 		return View::make('stores.category')
-		->with('products', Product::where('category_id', $cat_id)->paginate(6))
-		->with('category', Category::find($cat_id));
+			->with('products', Product::where('category_id', $cat_id)->paginate(6))
+			->with('category', Category::find($cat_id));
 	}
 
 	public function getSearch(){
 		$keyword = Input::get('keyword');
 
 		return View::make('stores.search')
-		->with('products', Product::where('title', 'LIKE', '%'.$keyword.'%')->get())
-		->with('keyword', $keyword);
+			->with('products', Product::where('title', 'LIKE', '%'.$keyword.'%')->get())
+			->with('keyword', $keyword);
 	}	
 
 	public function getContact(){

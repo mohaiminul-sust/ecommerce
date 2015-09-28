@@ -24,7 +24,7 @@
         <div id="wrapper">
             <header>
                 <section id="top-area">
-                    <p>Phone orders: 1-800-0000 | Email us: <a href="mailto:office@shop.com">office@shop.com</a></p>
+                    <p>Phone orders: (+880) 1711-789526 | Email us: <a href="mailto:office@shop.com">office@shop.com</a></p>
                 </section><!-- end top-area -->
                 <section id="action-bar">
                     <div id="logo">
@@ -112,7 +112,7 @@
 
             <footer>
                 <section id="contact">
-                    <h3>For phone orders please call 1-800-000. You<br>can also email us at <a href="mailto:office@shop.com">office@shop.com</a></h3>
+                    <h3>For phone orders please call (+880) 1711-789526. You<br>can also email us at <a href="mailto:office@shop.com">office@shop.com</a></h3>
                 </section><!-- end contact -->
 
                 <hr />
