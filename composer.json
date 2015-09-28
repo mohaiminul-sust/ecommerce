@@ -9,10 +9,7 @@
 		"laravel/framework": "4.2.*",
 		"way/generators": "~2.0",
 		"intervention/image": "^2.3",
-		"moltin/currency": "dev-master",
-		"moltin/tax": "dev-master",
-		"moltin/cart": "dev-master",
-		"moltin/laravel-cart": "v4.2"
+		"gloudemans/shoppingcart": "~1.2"
 	},
 
 	"autoload": {
