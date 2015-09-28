@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2015 at 09:42 PM
+-- Generation Time: Sep 28, 2015 at 10:02 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -125,8 +125,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `telephone`, `admin`, `created_at`, `updated_at`, `remember_token`) VALUES
-(1, 'Mohaiminul', 'Islam', 'mohaiminul.sust@csesociety.org', '$2y$10$3.L/d2kfOgq/vblbQtg7cuaMLXIlBcXbBxN75Q44Iah6KDzfgJjTm', '01714460390', 1, '2015-09-22 09:53:17', '2015-09-27 13:33:00', 'x74JhNHFJE1Q82Qhj546OT2rZ9otzlJrnDOYvzU5WEp6LdE7ghtKoTWitbwy'),
-(2, 'Rezaul', 'Islam', 'rezaullged@gmail.com', '$2y$10$r8FRrrQ.nzJdc0S.3gdvruRiIAmFm34wsnn65Lx3XnHtva1e9Qr0a', '01711573311', 0, '2015-09-22 11:49:24', '2015-09-25 14:31:46', 'ZVrR8Zz7vbfE34XFjyIynCNq0yajXC5khMBsa2NGnxwR5wCUif50NzyxsJaO');
+(1, 'Mohaiminul', 'Islam', 'mohaiminul.sust@csesociety.org', '$2y$10$3.L/d2kfOgq/vblbQtg7cuaMLXIlBcXbBxN75Q44Iah6KDzfgJjTm', '01714460390', 1, '2015-09-22 09:53:17', '2015-09-28 13:19:39', 'Qaz0vSclJaDEaKGN6OoGVc5fI4h3nPSqWnGXtJ1f665Yo2hZ1HJyIAqMxgCh'),
+(2, 'Rezaul', 'Islam', 'rezaullged@gmail.com', '$2y$10$r8FRrrQ.nzJdc0S.3gdvruRiIAmFm34wsnn65Lx3XnHtva1e9Qr0a', '01711573311', 0, '2015-09-22 11:49:24', '2015-09-28 13:19:59', 'kn0VpDYLCGGif5oT6wbDEGu2GgGVLDI1HHJUx7OaMzkuIG8WgweTzIxIwQdJ');
 
 --
 -- Indexes for dumped tables
