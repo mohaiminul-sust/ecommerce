@@ -48,7 +48,7 @@
 					<input type="hidden" name="cmd" value="_xclick">
 					<input type="hidden" name="bussiness" value="office@shop.com"> {{-- change this value with shops paypal id --}}
 					<input type="hidden" name="item_name" value="eCommerce Store Purchase">
-					<input type="hidden" name="amount" value="{{ Cart::total() }}">
+					<input type="hidden" name="amount" value="{{ Cart::instance($instance)->total() }}">
 					<input type="hidden" name="first_name" value="{{ Auth::user()->firstname }}">
 					<input type="hidden" name="last_name" value="{{ Auth::user()->lastname }}">
 					<input type="hidden" name="email" value="{{ Auth::user()->email }}">
