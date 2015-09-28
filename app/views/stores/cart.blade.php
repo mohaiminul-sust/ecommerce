@@ -15,6 +15,7 @@
             </tr>
 
             @foreach($products as $product)
+            	@if($product->user_id == $user_id)
 	            <tr>
 	                <td>{{ $product->id }}</td>
 	                <td>
@@ -33,12 +34,13 @@
 	                    </a>
 	                </td>
 	            </tr>
+	            @endif
             @endforeach
 
             <tr class="total">
                 <td colspan="5">
-                    Subtotal: ${{ Cart::total() }}<br />
-                    <span>TOTAL: ${{ Cart::total() }}</span><br />
+                    Subtotal: ${{ CartHelper::displaySubtotal($user_id, $products) }}<br />
+                    <span>TOTAL: ${{ CartHelper::displaySubtotal($user_id, $products) }}</span><br />
 					
 					{{-- required fields for paypal --}}
 

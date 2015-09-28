@@ -77,7 +77,7 @@ Route::filter('admin', function()
 {
 	if (!Auth::check() || Auth::user()->admin != 1){
 		
-		return Redirect::to('/')->withMessage('Unauthorized access prohibited !!! Login with an account that has admin privilages.');
+		return Redirect::to('users/signin')->withMessage('Unauthorized access prohibited !!! Login with an account that has admin privilages.');
 
 	}
 });

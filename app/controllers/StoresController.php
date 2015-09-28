@@ -45,13 +45,14 @@ class StoresController extends BaseController {
 
 		$product = Product::find(Input::get('id'));
 		$quantity = Input::get('quantity');
-
+		$user_id = Auth::user()->id;
 
 		Cart::insert([
 			'id' => $product->id,
 			'name' => $product->title,
 			'price' => $product->price,
 			'quantity' => $quantity,
+			'user_id' => $user_id,
 			'image' => $product->image
 		]);
 
@@ -60,7 +61,9 @@ class StoresController extends BaseController {
 
 	public function getCart(){
 		
-		return View::make('stores.cart')->withProducts(Cart::contents());
+		return View::make('stores.cart')
+			->with('user_id', Auth::user()->id)
+			->withProducts(Cart::contents());
 	}
 
 	public function removeCartItem($identifier){
