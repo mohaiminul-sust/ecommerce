@@ -21,7 +21,10 @@ Route::group(['prefix'=>'stores'], function(){
 
 	Route::get('/cart', ['as'=>'stores.cart', 'uses'=>'StoresController@getCart']);
 	Route::post('/cart', ['as'=>'stores.addtocart', 'uses'=>'StoresController@addToCart']);
-	Route::get('/cart/removeitem/{identifier}', ['as'=>'stores.removecartitem', 'uses'=>'StoresController@removeCartItem']);
+	Route::get('/cart/removeitem/{rowid}', ['as'=>'stores.removecartitem', 'uses'=>'StoresController@removeCartItem']);
+	Route::get('/cart/destroy', ['as'=>'stores.destroycart', 'uses'=>'StoresController@destroyCart']);
+    
+
 
 	Route::get('/contact', ['as'=>'stores.contact', 'uses'=>'StoresController@getContact']);
 	Route::get('/category/{cat_id}', ['as'=>'stores.category', 'uses'=>'StoresController@getCategory']);

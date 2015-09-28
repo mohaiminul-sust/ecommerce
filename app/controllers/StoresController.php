@@ -6,7 +6,7 @@ class StoresController extends BaseController {
 	public function __construct(){
 		parent::__construct();
 		$this->beforeFilter('csrf', ['on'=>'post']);
-		$this->beforeFilter('auth', ['only'=>['addToCart', 'getCart', 'removeCartItem']]);
+		$this->beforeFilter('auth', ['only'=>['addToCart', 'getCart', 'removeCartItem', 'destroyCart']]);
 	}
 
 
@@ -45,33 +45,46 @@ class StoresController extends BaseController {
 
 		$product = Product::find(Input::get('id'));
 		$quantity = Input::get('quantity');
-		$user_id = Auth::user()->id;
+		// $user_id = Auth::user()->id;
+		$instance = Auth::user()->firstname.'_'.Auth::user()->id.'_shopping';
 
-		Cart::insert([
+
+		Cart::instance($instance)->add([
 			'id' => $product->id,
 			'name' => $product->title,
+			'qty' => $quantity,
 			'price' => $product->price,
-			'quantity' => $quantity,
-			'user_id' => $user_id,
-			'image' => $product->image
+			'options' => ['image' => $product->image]
 		]);
-
+		// dd(Cart::content());
 		return Redirect::to('stores/cart')->withMessage('Inserted product into cart : '.$product->title.' Quantity: '.$quantity);
 	}
 
 	public function getCart(){
 		
+		$instance = Auth::user()->firstname.'_'.Auth::user()->id.'_shopping';
+		
 		return View::make('stores.cart')
-			->with('user_id', Auth::user()->id)
-			->withProducts(Cart::contents());
+			->with('instance', $instance)
+			->withProducts(Cart::instance($instance)->content());
 	}
 
-	public function removeCartItem($identifier){
+	public function removeCartItem($rowid){
+		$instance = Auth::user()->firstname.'_'.Auth::user()->id.'_shopping';
 		
-		$item = Cart::item($identifier);
-		$item->remove();
-		
-		return Redirect::to('stores/cart')->withMessage('Removed product from cart : '.$item->name);
+		// $item = Cart::item($identifier);
+		// $item->remove();
+		Cart::instance($instance)->remove($rowid);
+		return Redirect::to('stores/cart')->withMessage('Removed product from cart');
+
+	}
+
+	public function destroyCart(){
+		$instance = Auth::user()->firstname.'_'.Auth::user()->id.'_shopping';
+
+
+		Cart::instance($instance)->destroy();
+		return Redirect::to('stores/cart')->withMessage('Cart destroyed!!!!');
 
 	}
 

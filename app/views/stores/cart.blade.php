@@ -15,33 +15,33 @@
             </tr>
 
             @foreach($products as $product)
-            	@if($product->user_id == $user_id)
+            	{{-- @if($product->user_id == $user_id) --}}
+            	{{-- {{ dd($product); }} --}}
 	            <tr>
 	                <td>{{ $product->id }}</td>
 	                <td>
 	                    {{-- <img src="img/main-product.png" alt="Product" width="65" height="37" />  --}}
-	                    {{ HTML::image($product->image, $product->name, ['width'=>'65', 'height'=>'37']) }}
+	                    {{ HTML::image($product->options->has('image') ? $product->options->image : '', $product->name, ['width'=>'65', 'height'=>'37']) }}
 	                    {{ $product->name }}
 	                </td>
 	                <td>{{ $product->price }}</td>
 	                <td>
-	                    {{ $product->quantity }}
+	                    {{ $product->qty }}
 	                </td>
 	                <td>
-	                    {{ $product->price * $product->quantity }}
-	                    <a href="{{ URL::route('stores.removecartitem', $product->identifier) }}">
+	                    {{ $product->price * $product->qty }}
+	                    <a href="{{ URL::route('stores.removecartitem', $product->rowid) }}">
 	                        {{ HTML::image('img/remove.gif', 'Remove product') }}
 	                    </a>
 	                </td>
 	            </tr>
-	            {{-- @elseif() --}}
-	            @endif
+	            {{-- @endif --}}
             @endforeach
 
             <tr class="total">
                 <td colspan="5">
-                    Subtotal: ${{ CartHelper::displaySubtotal($user_id, $products) }}<br />
-                    <span>TOTAL: ${{ CartHelper::displaySubtotal($user_id, $products) }}</span><br />
+                    {{-- Subtotal: ${{ Cart::instance($instance)->total() }}<br /> --}}
+                    <span>TOTAL: ${{ Cart::instance($instance)->total() }}</span><br />
 					
 					{{-- required fields for paypal --}}
 
