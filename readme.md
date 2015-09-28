@@ -1,5 +1,6 @@
 ## eCommerce app in Laravel PHP Framework
 
+**Ongoing e-commerce mock project for self study. All contributions are welcome.**
 
 ### Contributing To this project
 
