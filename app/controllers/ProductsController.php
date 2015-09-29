@@ -3,6 +3,7 @@
 class ProductsController extends BaseController {
 	public function __construct(){
 		parent::__construct();
+
 		$this->beforeFilter('csrf', ['on'=>'post']);
 		$this->beforeFilter('admin');
 	}
@@ -17,7 +18,6 @@ class ProductsController extends BaseController {
 		}
 
 		return View::make('products.index')
-			// ->withMessage('Welcome to products admin panel '.Auth::user()->firstname.' .')
 			->withProducts(Product::all())
 			->withCategories($categories);
 	}

@@ -15,7 +15,6 @@
             </tr>
 
             @foreach($products as $product)
-            	{{-- @if($product->user_id == $user_id) --}}
             	{{-- {{ dd($product); }} --}}
 	            <tr>
 	                <td>{{ $product->id }}</td>
@@ -30,12 +29,11 @@
 	                </td>
 	                <td>
 	                    {{ $product->price * $product->qty }}
-	                    <a href="{{ URL::route('stores.removecartitem', $product->rowid) }}">
+	                    <a href="{{ URL::route('cart.removeitem', $product->rowid) }}">
 	                        {{ HTML::image('img/remove.gif', 'Remove product') }}
 	                    </a>
 	                </td>
 	            </tr>
-	            {{-- @endif --}}
             @endforeach
 
             <tr class="total">
@@ -56,6 +54,7 @@
 					{{-- end required fields for paypal --}}
 
                     <a href="/" class="tertiary-btn">CONTINUE SHOPPING</a>
+                    <a href="{{ URL::route('cart.destroy') }}" class="alert-btn">EMPTY CART</a>
                     <input type="submit" value="CHECKOUT WITH PAYPAL" class="secondary-cart-btn">
                 </td>
             </tr>

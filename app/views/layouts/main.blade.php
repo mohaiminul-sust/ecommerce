@@ -85,7 +85,7 @@
                     </div><!-- end user-menu -->
 
                     <div id="view-cart">
-                        <a href="{{ URL::route('stores.cart') }}">{{ HTML::image('img/blue-cart.gif', 'View Cart') }} View Cart</a>
+                        <a href="{{ URL::route('cart') }}">{{ HTML::image('img/blue-cart.gif', 'View Cart') }} View Cart</a>
                     </div><!-- end view-cart -->
                 </section><!-- end action-bar -->
             </header>
@@ -129,7 +129,7 @@
                                     <li><a href="{{ URL::route('admin.products') }}">Manage Products</a></li>
                                 @endif
                             @endif
-                            <li><a href="{{ URL::route('stores.cart') }}">Shopping Cart</a></li>
+                            <li><a href="{{ URL::route('cart') }}">Shopping Cart</a></li>
                         </ul>
                     </div><!-- end my-account -->
                     <div id="info">

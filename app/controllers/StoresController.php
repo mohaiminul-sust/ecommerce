@@ -5,8 +5,9 @@ class StoresController extends BaseController {
 	//csrf
 	public function __construct(){
 		parent::__construct();
+
 		$this->beforeFilter('csrf', ['on'=>'post']);
-		$this->beforeFilter('auth', ['only'=>['addToCart', 'getCart', 'removeCartItem', 'destroyCart']]);
+		
 	}
 
 
@@ -38,55 +39,5 @@ class StoresController extends BaseController {
 		
 		return View::make('stores.contact');
 	}
-	
-	//cart functions below
-
-	public function addToCart(){
-
-		$product = Product::find(Input::get('id'));
-		$quantity = Input::get('quantity');
-		// $user_id = Auth::user()->id;
-		$instance = Auth::user()->firstname.'_'.Auth::user()->id.'_shopping';
-
-
-		Cart::instance($instance)->add([
-			'id' => $product->id,
-			'name' => $product->title,
-			'qty' => $quantity,
-			'price' => $product->price,
-			'options' => ['image' => $product->image]
-		]);
-		// dd(Cart::content());
-		return Redirect::to('stores/cart')->withMessage('Inserted product into cart : '.$product->title.' Quantity: '.$quantity);
-	}
-
-	public function getCart(){
-		
-		$instance = Auth::user()->firstname.'_'.Auth::user()->id.'_shopping';
-		
-		return View::make('stores.cart')
-			->with('instance', $instance)
-			->withProducts(Cart::instance($instance)->content());
-	}
-
-	public function removeCartItem($rowid){
-		$instance = Auth::user()->firstname.'_'.Auth::user()->id.'_shopping';
-		
-		// $item = Cart::item($identifier);
-		// $item->remove();
-		Cart::instance($instance)->remove($rowid);
-		return Redirect::to('stores/cart')->withMessage('Removed product from cart');
-
-	}
-
-	public function destroyCart(){
-		$instance = Auth::user()->firstname.'_'.Auth::user()->id.'_shopping';
-
-
-		Cart::instance($instance)->destroy();
-		return Redirect::to('stores/cart')->withMessage('Cart destroyed!!!!');
-
-	}
-
 	
 }

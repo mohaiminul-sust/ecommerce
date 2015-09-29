@@ -1,11 +1,16 @@
 <?php
 
 class BaseController extends Controller {
+	
+	// Base construct : To share categories among views
 	public function __construct(){
+		
 		$this->beforeFilter(function(){
 			View::share('catnav', Category::all());
 		});
+
 	}
+
 	/**
 	 * Setup the layout used by the controller.
 	 *

@@ -54,7 +54,6 @@ class UsersController extends BaseController{
 		if(Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')])){
 
 			return Redirect::to('/')->withMessage('Thanks for signing in '. Auth::user()->firstname .' :) ');
-			// return 'voodoo magic';
 			
 		}
 
@@ -68,8 +67,7 @@ class UsersController extends BaseController{
 		Auth::logout();
 
 		return Redirect::to('users/signin')->withMessage('You have been signed out :( Sign in again to continue shopping or checkout.');
-				
-		// return Redirect::to('users/signin')->with('message', 'Auth logout failed!');
+		
 
 	}	
 

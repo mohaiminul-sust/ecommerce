@@ -11,20 +11,28 @@
 |
 */
 
-// home
+// HOME
+
 Route::get('/', ['as'=>'homeroute','uses'=>'StoresController@index']);
+
+
+
+// Cart Routes
+
+Route::group(['prefix'=>'cart'], function(){
+
+	Route::get('/', ['as'=>'cart', 'uses'=>'CartController@index']);
+	Route::post('/', ['as'=>'cart.additem', 'uses'=>'CartController@addItem']);
+	Route::get('/removeitem/{rowid}', ['as'=>'cart.removeitem', 'uses'=>'CartController@removeItem']);
+	Route::get('/destroy', ['as'=>'cart.destroy', 'uses'=>'CartController@destroy']);
+    
+});
+
 
 
 //Stores Routes
 
 Route::group(['prefix'=>'stores'], function(){
-
-	Route::get('/cart', ['as'=>'stores.cart', 'uses'=>'StoresController@getCart']);
-	Route::post('/cart', ['as'=>'stores.addtocart', 'uses'=>'StoresController@addToCart']);
-	Route::get('/cart/removeitem/{rowid}', ['as'=>'stores.removecartitem', 'uses'=>'StoresController@removeCartItem']);
-	Route::get('/cart/destroy', ['as'=>'stores.destroycart', 'uses'=>'StoresController@destroyCart']);
-    
-
 
 	Route::get('/contact', ['as'=>'stores.contact', 'uses'=>'StoresController@getContact']);
 	Route::get('/category/{cat_id}', ['as'=>'stores.category', 'uses'=>'StoresController@getCategory']);
@@ -33,6 +41,8 @@ Route::group(['prefix'=>'stores'], function(){
 	Route::get('/', ['as'=>'stores', 'uses'=>'StoresController@index']);
 	
 });
+
+
 
 //Users Routes
 
@@ -46,9 +56,13 @@ Route::group(['prefix'=>'users'], function(){
 });
 
 
+
+
 //admin routes
 
 Route::group(['prefix'=>'admin'], function(){
+	
+	//Categories admin routes
 	
 	Route::group(['prefix'=>'categories'], function(){
 
@@ -57,6 +71,8 @@ Route::group(['prefix'=>'admin'], function(){
 		Route::delete('/{id}', ['as'=>'admin.categories.destroy', 'uses'=>'CategoriesController@destroy']);
 
 	});
+
+	//Products admin routes
 
 	Route::group(['prefix'=>'products'], function(){
 

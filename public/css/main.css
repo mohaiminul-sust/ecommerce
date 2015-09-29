@@ -1114,6 +1114,17 @@ section#promo .default-btn, .default-btn {
     text-decoration: none;
 }
 
+.alert-btn {
+    background-color: #E55353;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 0px 5px 0px #AF0C0C;
+    text-decoration: none;
+}
+
 /* IE7 Padding Fix */
 .lt-ie8 .default-btn, .lt-ie8 .secondary-btn,
 .lt-ie8 .tertiary-btn {

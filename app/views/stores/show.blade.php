@@ -5,21 +5,13 @@
     	{{ HTML::image($product->image, $product->title) }}
  	</div><!-- end product-image -->
 	<div id="product-details">
+	    
 	    <h1>{{ $product->title }}</h1>
 	    <p>{{ $product->description }}</p>
 
 	    <hr />
 
-	    {{-- <form action="#" method="post">
-	        <label for="qty">Qty:</label>
-	        <input type="text" id="qty" name="qty" value="1" maxlength="2">
-
-	        <button type="submit" class="secondary-cart-btn">
-	            {{ HTML::image('img/white-cart.gif', 'Add to Cart') }}
-	             ADD TO CART
-	        </button>
-	    </form> --}}
-	    {{ Form::open(['route'=>'stores.addtocart', 'method'=>'post']) }}
+	    {{ Form::open(['route'=>'cart.additem', 'method'=>'post']) }}
 		{{ Form::label('quantity', 'Quantity') }}
 		{{ Form::text('quantity', 1, ['maxlength'=>2]) }}
 	    {{ Form::hidden('id', $product->id) }}

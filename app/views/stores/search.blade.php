@@ -36,7 +36,7 @@
 	             {{ HTML::image('img/white-cart.gif', 'Add to cart') }}
 	              ADD TO CART
 	        </a> --}}
-	        {{ Form::open(['route'=>'stores.addtocart', 'method'=>'post']) }}
+	        {{ Form::open(['route'=>'cart.additem', 'method'=>'post']) }}
 	        {{ Form::hidden('quantity', 1) }}
 	        {{ Form::hidden('id', $product->id) }}
 	        <button type="submit" class="cart-btn">
