@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2015 at 10:02 PM
+-- Generation Time: Sep 29, 2015 at 09:17 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `categories`
@@ -125,8 +125,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `telephone`, `admin`, `created_at`, `updated_at`, `remember_token`) VALUES
-(1, 'Mohaiminul', 'Islam', 'mohaiminul.sust@csesociety.org', '$2y$10$3.L/d2kfOgq/vblbQtg7cuaMLXIlBcXbBxN75Q44Iah6KDzfgJjTm', '01714460390', 1, '2015-09-22 09:53:17', '2015-09-28 13:19:39', 'Qaz0vSclJaDEaKGN6OoGVc5fI4h3nPSqWnGXtJ1f665Yo2hZ1HJyIAqMxgCh'),
-(2, 'Rezaul', 'Islam', 'rezaullged@gmail.com', '$2y$10$r8FRrrQ.nzJdc0S.3gdvruRiIAmFm34wsnn65Lx3XnHtva1e9Qr0a', '01711573311', 0, '2015-09-22 11:49:24', '2015-09-28 13:19:59', 'kn0VpDYLCGGif5oT6wbDEGu2GgGVLDI1HHJUx7OaMzkuIG8WgweTzIxIwQdJ');
+(1, 'Mohaiminul', 'Islam', 'mohaiminul.sust@csesociety.org', '$2y$10$3.L/d2kfOgq/vblbQtg7cuaMLXIlBcXbBxN75Q44Iah6KDzfgJjTm', '01714460390', 1, '2015-09-22 09:53:17', '2015-09-29 05:04:58', 'XWkW1LppT9aR3pVkPIjKHlgffd2M2ncvWD0e9UcskIGSAQnYQhpDneYDCgks'),
+(2, 'Rezaul', 'Islam', 'rezaullged@gmail.com', '$2y$10$r8FRrrQ.nzJdc0S.3gdvruRiIAmFm34wsnn65Lx3XnHtva1e9Qr0a', '01711573311', 0, '2015-09-22 11:49:24', '2015-09-29 05:03:24', '3kztplteKSc1VEs9mSSVfiml1v60U6IRMlZZ9sEvfTETqLJwzJF6nLwv7iyg');
 
 --
 -- Indexes for dumped tables
@@ -158,7 +158,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `products`
 --
