@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('users/signin');
+			return Redirect::guest('users/signin')->withMessage('Sign up or Sign in to your account to add item to cart');
 		}
 	}
 });
@@ -67,7 +67,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::check()) return Redirect::to('users/signin')->withMessage('You are not signed in! Sign in to your account or Sign up.');
 });
 
 
