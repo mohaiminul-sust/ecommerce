@@ -89,6 +89,12 @@
                     </div><!-- end view-cart -->
                 </section><!-- end action-bar -->
             </header>
+            
+            {{-- flash messages --}}
+            @if(Session::has('message'))
+                <hr />
+                <p class="alert"> {{ Session::get('message') }} </p>
+            @endif
 
             @yield('promo')
 
@@ -98,11 +104,6 @@
             <hr />
 
             <section id="main-content" class="clearfix">
-            {{-- flash messages --}}
-                @if(Session::has('message'))
-                    <p class="alert"> {{ Session::get('message') }} </p>
-                @endif
-
                 @yield('content')
             </section><!-- end main-content -->
 
