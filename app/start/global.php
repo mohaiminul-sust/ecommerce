@@ -49,7 +49,19 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+
+	$pathInfo = Request::getPathInfo();
+    $message = $exception->getMessage() ?: 'Exception';
+    Log::error("$code - $message @ $pathInfo\r\n$exception");
+
+
+});
+
+App::missing(function($exception)
+{
+    // $layout = \View::make('layouts.error');
+    // $layout->content = \View::make('views.errors.404');
+    return View::make('errors.error404');
 });
 
 /*
