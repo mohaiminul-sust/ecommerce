@@ -342,6 +342,12 @@ header a:link, header a:visited {
     border-left: 1px dotted #000;
 }
 
+#promo2 p {
+    color: #9dbb6f;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
 #promo2 h2 {
     color: #2e373f;
     font-size: 16px;
@@ -373,6 +379,13 @@ header a:link, header a:visited {
     width: 34%;
     height: 240px;
     background-color: #2e373f;
+}
+
+#promo3 p {
+    color: #9dbb6f;
+    margin-left: 190px;
+    margin-bottom: 100px;
+    font-size: 14px;
 }
 
 #promo3 img {
