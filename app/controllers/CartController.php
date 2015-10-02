@@ -37,9 +37,8 @@ class CartController extends BaseController {
 			// dd(Cart::content());
 			return Redirect::to('/cart')->withMessage('Inserted product into cart : '.$product->title.' Quantity: '.$quantity);
 		}
-
-		return Redirect::back()->withMessage('Can\'t add product to cart ! Product NOT available !');
 		
+		return Redirect::back()->withMessage('Can\'t add product to cart ! Product NOT available !');		 
 	}
 
 	public function removeItem($rowid){
