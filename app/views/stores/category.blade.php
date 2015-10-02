@@ -3,7 +3,7 @@
 @section('promo')
 
 <section id="promo-alt">
-    <div id="promo1">
+   {{--  <div id="promo1">
         <h1>The brand new MacBook Pro</h1>
         <p>With a special price, <span class="bold">today only!</span></p>
         <a href="#" class="secondary-btn">READ MORE</a>
@@ -18,7 +18,60 @@
         {{ HTML::image('img/thunderbolt.png', 'Thunderbolt') }}
         <h2>The 27"<br>Thunderbolt Display.<br>Simply Stunning.</h2>
         <a href="#">Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}</a>
-    </div><!-- end promo3 -->
+    </div><!-- end promo3 --> --}}
+    
+    @for($i = 1; $i <=3 ; $i++)
+        <?php 
+            $promo_id = 'promo'.$i; 
+            $product = Promo::getRandProduct(Product::all());
+        ?>
+
+        @if($product)
+            @if($promo_id == 'promo1')
+                
+                <div id="{{ $promo_id }}">
+                    
+                    <h1>{{ $product->title }}</h1>
+                    
+                    
+                    <p>{{ Promo::getDescription($product->description) }}</p>
+
+                    <a href="{{ URL::route('stores.show', $product->id) }}" class="secondary-btn">READ MORE</a>
+                    {{-- {{ HTML::image($product->image, $product->title, ['width'=>'709', 'height'=>'401']) }} --}}
+                    {{ HTML::image('img/macbook.png', 'Macbook Pro') }}
+                </div><!-- end promo1 -->
+
+            @elseif($promo_id == 'promo2')
+                
+                <div id="{{ $promo_id }}">
+                    
+                    <h2>{{ Promo::getDescription($product->description) }}</h2>
+                    
+                    <a href="{{ URL::route('stores.show', $product->id) }}">
+                        Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}
+                    </a>
+
+                    {{ HTML::image('img/iphone.png', 'iPhone') }}
+                    {{-- {{ HTML::image($product->image, $product->title, ['width'=>'66', 'height'=>'130']) }} --}}
+                </div><!-- end promo2 -->
+            
+            @elseif($promo_id == 'promo3')
+
+                <div id="{{ $promo_id }}">
+                    {{ HTML::image('img/thunderbolt.png', 'Thunderbolt') }}
+                    
+                    <h2>{{ Promo::getDescription($product->description) }}</h2>
+                    
+                    <a href="{{ URL::route('stores.show', $product->id) }}">
+                        Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}
+                    </a>
+                </div><!-- end promo3 --> --}}
+            
+            @endif
+        
+        @endif
+    
+    @endfor
 </section><!-- promo-alt -->
 
 @stop
