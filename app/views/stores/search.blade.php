@@ -3,11 +3,80 @@
 @section('search-keyword')
 
 <hr>
+
+
+@section('promo')
+
+<section id="promo-alt">
+
+    @for($i = 1; $i <=3 ; $i++)
+        <?php 
+            $promo_id = 'promo'.$i; 
+            $product = Promo::getRandProduct(Product::all());
+        ?>
+
+        @if($product)
+            @if($promo_id == 'promo1')
+                
+                <div id="{{ $promo_id }}">
+                    <h1>{{ $product->title }}</h1>
+
+                    <p>{{ Promo::getDescription($product->description) }}</p>
+
+                    <a href="{{ URL::route('stores.show', $product->id) }}" class="secondary-btn">READ MORE</a>
+                    {{-- {{ HTML::image($product->image, $product->title, ['width'=>'709', 'height'=>'401']) }} --}}
+                    {{ HTML::image('img/macbook.png', 'Macbook Pro') }}
+
+                </div><!-- end promo1 -->
+
+            @elseif($promo_id == 'promo2')
+                
+                <div id="{{ $promo_id }}">
+                    
+                    <h2>{{ $product->title }}</h2>
+
+                    <p>{{ Promo::getDescription($product->description) }}</p>
+
+                    <a href="{{ URL::route('stores.show', $product->id) }}">
+                        Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}
+                    </a>
+
+                    {{ HTML::image('img/iphone.png', 'iPhone') }}
+                    {{-- {{ HTML::image($product->image, $product->title, ['width'=>'66', 'height'=>'130']) }} --}}
+                </div><!-- end promo2 -->
+            
+            @elseif($promo_id == 'promo3')
+
+                <div id="{{ $promo_id }}">
+                    {{ HTML::image('img/thunderbolt.png', 'Thunderbolt') }}
+                    {{-- {{ HTML::image($product->image, $product->title, ['width'=>'66', 'height'=>'130']) }} --}}
+                    
+                    <h2>{{ $product->title }}</h2>
+
+                    <p>{{ Promo::getDescription($product->description) }}</p>
+                    
+
+                    <a href="{{ URL::route('stores.show', $product->id) }}">
+                        Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}
+                    </a>
+                </div><!-- end promo3 --> --}}
+            
+            @endif
+        
+        @endif
+    
+    @endfor
+</section><!-- promo-alt -->
+
+@stop
+
+
 <section id="search-keyword">
-    <h1>Search Results for <span>{{ $keyword }}</span></h1>
+    <h1>Search Results for <span>'{{ $keyword }}'</span></h1>
 </section><!-- end search-keyword -->
 
 @stop
+
 
 
 @section('content')

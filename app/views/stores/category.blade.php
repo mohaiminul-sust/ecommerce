@@ -3,23 +3,7 @@
 @section('promo')
 
 <section id="promo-alt">
-   {{--  <div id="promo1">
-        <h1>The brand new MacBook Pro</h1>
-        <p>With a special price, <span class="bold">today only!</span></p>
-        <a href="#" class="secondary-btn">READ MORE</a>
-        {{ HTML::image('img/macbook.png', 'Macbook Pro') }}
-    </div><!-- end promo1 -->
-    <div id="promo2">
-        <h2>The iPhone 5 is now<br>available in our store!</h2>
-        <a href="#">Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}</a>
-        {{ HTML::image('img/iphone.png', 'iPhone') }}
-    </div><!-- end promo2 -->
-    <div id="promo3">
-        {{ HTML::image('img/thunderbolt.png', 'Thunderbolt') }}
-        <h2>The 27"<br>Thunderbolt Display.<br>Simply Stunning.</h2>
-        <a href="#">Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}</a>
-    </div><!-- end promo3 --> --}}
-    
+   
     @for($i = 1; $i <=3 ; $i++)
         <?php 
             $promo_id = 'promo'.$i; 
