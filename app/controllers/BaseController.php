@@ -6,6 +6,7 @@ class BaseController extends Controller {
 	public function __construct(){
 		
 		$this->beforeFilter(function(){
+			View::share('prev_url_cart', "");
 			View::share('catnav', Category::all());
 		});
 
