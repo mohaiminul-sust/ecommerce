@@ -1,5 +1,6 @@
 @extends('layouts.main')
 
+
 @section('content')
  	<div id="product-image">
     	{{ HTML::image($product->image, $product->title) }}

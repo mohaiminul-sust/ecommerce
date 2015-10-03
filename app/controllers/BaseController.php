@@ -2,11 +2,10 @@
 
 class BaseController extends Controller {
 	
-	// Base construct : To share categories among views
+	// Base construct : To share variables among views
 	public function __construct(){
 		
 		$this->beforeFilter(function(){
-			View::share('prev_url_cart', "");
 			View::share('catnav', Category::all());
 		});
 

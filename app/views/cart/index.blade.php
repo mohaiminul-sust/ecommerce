@@ -38,7 +38,7 @@
 
             <tr class="total">
                 <td colspan="5">
-                    {{-- Subtotal: ${{ Cart::instance($instance)->total() }}<br /> --}}
+                    
                     <span>TOTAL: ${{ Cart::instance($instance)->total() }}</span><br />
 					
 					{{-- required fields for paypal --}}
@@ -53,7 +53,7 @@
 
 					{{-- end required fields for paypal --}}
 
-                    <a href="/" class="tertiary-btn">CONTINUE SHOPPING</a>
+                    <a href="{{ URL::previous() }}" class="tertiary-btn">CONTINUE SHOPPING</a>
                     <a href="{{ URL::route('cart.destroy') }}" class="alert-btn">EMPTY CART</a>
                     <input type="submit" value="CHECKOUT WITH PAYPAL" class="secondary-cart-btn">
                 </td>

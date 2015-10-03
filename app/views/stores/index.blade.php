@@ -14,7 +14,9 @@
 
 @stop 
 
+
 @section('content')
+
 	<h2>New Products</h2>
     <hr>
     <div id="products">
@@ -35,11 +37,7 @@
             </h5>
 
             <p>
-                {{-- <a href="#" class="cart-btn">
-                    <span class="price">${{ $product->price }}</span>
-                     {{ HTML::image('img/white-cart.gif', 'Add to cart') }}
-                      ADD TO CART
-                </a> --}}
+                
                 {{ Form::open(['route'=>'cart.additem', 'method'=>'post']) }}
                 {{ Form::hidden('quantity', 1) }}
                 {{ Form::hidden('id', $product->id) }}

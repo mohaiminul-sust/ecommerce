@@ -5,14 +5,6 @@
 */
 class Promo {
 	
-	function __construct()
-	{
-		$flag = 1;
-		$promo_id = "";
-	}
-
-
-
 	public static function getRandProduct($products){
 
 		$product_count = $products->count();

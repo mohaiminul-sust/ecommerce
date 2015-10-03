@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+
+
 @section('promo')
 
 <section id="promo-alt">
@@ -100,11 +102,7 @@
     </h5>
 
     <p>
-        {{-- <a href="#" class="cart-btn">
-            <span class="price">${{ $product->price }}</span>
-             {{ HTML::image('img/white-cart.gif', 'Add to cart') }}
-              ADD TO CART
-        </a> --}}
+    
         {{ Form::open(['route'=>'cart.additem', 'method'=>'post']) }}
         {{ Form::hidden('quantity', 1) }}
         {{ Form::hidden('id', $product->id) }}
