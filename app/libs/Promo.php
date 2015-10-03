@@ -1,7 +1,7 @@
 <?php 
 
 /**
-* 
+*  Promo class for promo utility
 */
 class Promo {
 	

@@ -1,7 +1,7 @@
 <?php 
 
 /**
-* 
+* Availability class for changing availability status within views
 */
 class Availability{
 	
