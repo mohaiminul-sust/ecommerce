@@ -52,19 +52,13 @@
 					<input type="hidden" name="email" value="{{ Auth::user()->email }}">
 
 					{{-- end required fields for paypal --}}
-					<?php 
-						$selfLink = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; 
-						$prevLink = URL::previous();
-					?>
-                    <a href="{{ CartUtil::linkMatch( $selfLink , $prevLink ) }}" class="tertiary-btn">CONTINUE SHOPPING</a>
+					
+                    <a href="{{ CartUtil::linkMatch() }}" class="tertiary-btn">CONTINUE SHOPPING</a>
                     <a href="{{ URL::route('cart.destroy') }}" class="alert-btn">EMPTY CART</a>
                     <input type="submit" value="CHECKOUT WITH PAYPAL" class="secondary-cart-btn">
                 </td>
             </tr>
         </table>
-        {{ 'Self : '.'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] }}
-        {{ 'URL prev : '.URL::previous()}}
-        {{ CartUtil::linkMatch( $selfLink , $prevLink ) }}
     </form>
 </div><!-- end shopping-cart -->
 @stop

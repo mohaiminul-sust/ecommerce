@@ -5,10 +5,10 @@
 */
 class CartUtil {
 	
+	public static function linkMatch(){
+		$selfLink = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; 
+		$prevLink = URL::previous();
 
-	public static function linkMatch($selfLink, $prevLink){
-		
-		// $genLink = "";
 
 		if($prevLink == $selfLink){
 
@@ -19,10 +19,6 @@ class CartUtil {
 			return $prevLink;
 
 		}
-
-
-		
-
 	}
 
 
