@@ -56,7 +56,7 @@
                     <a href="{{ URL::route('stores.show', $product->id) }}">
                         Read more {{ HTML::image('img/right-arrow.gif', 'Read more') }}
                     </a>
-                </div><!-- end promo3 --> --}}
+                </div><!-- end promo3 -->
             
             @endif
         

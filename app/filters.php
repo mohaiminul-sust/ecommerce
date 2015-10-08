@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('users/signin')->withMessage('Sign up or Sign in to your account to add item to cart');
+			return Redirect::guest('users/signin')->withMessage('Sign up or Sign in to your account to access cart options');
 		}
 	}
 });
